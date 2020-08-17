@@ -18,13 +18,13 @@
 
     <div class="left-menu">
         <dl class="menu">
-            <dt>学生列表</dt>
-            <dd class="active">学生管理</dd>
-            <dd>新增学生</dd>
+            <dt>学生管理</dt>
+            <dd data-id="student-list">学生列表</dd>
+            <dd class="active" data-id="student-add">新增学生</dd>
         </dl>
     </div>
     <div class="right-content">
-        <div class="student-add">
+        <div class="student-add" id="student-add">
             <form action="" id="student-add-form">
                 <div>
                     <label for="name">姓名</label>
@@ -33,9 +33,9 @@
                 <div>
                     <label for="">性别</label>
 
-                    <input type="radio" id="male" name="sex" checked>
+                    <input type="radio" id="male" name="sex" checked value="0">
                     <label for="male" class="sex">男</label>
-                    <input type="radio" id="female" name="sex">
+                    <input type="radio" id="female" name="sex" value="1">
                     <label for="female" class="sex">女</label>
                 </div>
                 <div>
@@ -51,8 +51,8 @@
                     <label for="phone">手机号</label>
                     <input type="text" id="phone"></div>
                 <div>
-                    <label for="adress">住址</label>
-                    <input type="text" id="adress">
+                    <label for="address">住址</label>
+                    <input type="text" id="address">
                 </div>
                 <div>
                     <label for=""></label>
@@ -61,7 +61,7 @@
                 </div>
             </form>
         </div>
-        <div class="student-list">
+        <div class="student-list" id="student-list">
             <table>
                 <thead>
                     <tr>
@@ -75,85 +75,7 @@
                         <td>操作</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>111</td>
-                        <td>小黄</td>
-                        <td>女</td>
-                        <td>11@.com</td>
-                        <td>20</td>
-                        <td>545415425</td>
-                        <td>福建省</td>
-                        <td>
-                            <button class="edit btn">编辑</button>
-                            <button class="del btn">删除</button>
-                        </td>
-                    </tr>
+                <tbody id="tbody">
                 </tbody>
             </table>
 
