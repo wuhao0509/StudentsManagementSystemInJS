@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    height: 70px;
+    line-height: 70px;
+    background-color: #354457;
+}
+
+.logo {
+    padding-left: 30px;
+    color: #b3bcc5;
+    font-size: 14px;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.left-menu {
+    float: left;
+    width: 200px;
+    height: calc(100% - 70px);
+    background-color: #4d5e70;
+}
+
+.menu {
+    font-size: 14px;
+    color: #b3bcc5;
+}
+
+.menu dt {
+    padding: 15px;
+}
+
+.menu dd {
+    padding: 10px 30px;
+}
+
+.menu dd:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #354457;
+}
+
+.active {
+    background-color: #ddd;
+    color: #354457;
+}
+
+.right-content {
+    float: right;
+    background-color: #eee;
+    height: calc(100% - 70px);
+    width: calc(100% - 200px);
+}
+
+.student-list {
+    display: none;
+}
+
+.student-list table {
+    width: 100%;
+    text-align: center;
+}
+
+.student-list table thead {
+    background-color: #e3e8ee;
+    color: #000;
+    line-height: 34px;
+}
+
+.student-list table tbody {
+    background-color: #fff;
+}
+
+.student-list table tbody tr {
+    line-height: 30px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.student-list .edit {
+    background-color: #5cb85c;
+}
+
+.student-list .del {
+    background-color: #d9534f;
+}
+
+.student-list .turn-page {
+    text-align: center;
+}
+
+.student-list .turn-page .btn {
+    background-color: #fff;
+    color: #000;
+}
+
+.student-add {
+    position: relative;
+}
+
+.student-add form {
+    width: 400px;
+    margin: 50px auto;
+}
+
+.student-add form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+
+.student-add form .sex {
+    width: 50px;
+    text-align: center;
+}
+
+.student-add form div {
+    margin-bottom: 10px;
+}
+
+.student-add form .btn {
+    border: 1px solid rgb(53, 68, 87);
+    color: rgb(53, 68, 87);
+    width: 76px;
+}
