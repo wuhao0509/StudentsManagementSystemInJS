@@ -19,7 +19,7 @@
     <div class="left-menu">
         <dl class="menu">
             <dt>学生管理</dt>
-            <dd data-id="student-list">学生列表</dd>
+            <dd data-id="student-list" class='student-list-left'>学生列表</dd>
             <dd class="active" data-id="student-add">新增学生</dd>
         </dl>
     </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div>
                     <label for="number">学号</label>
-                    <input type="text" id="number"></div>
+                    <input type="text" id="sNo"></div>
                 <div>
                     <label for="email">邮箱</label>
                     <input type="text" id="email"></div>
@@ -57,7 +57,7 @@
                 <div>
                     <label for=""></label>
                     <input type="submit" class="btn" id="student-add-submit">
-                    <input type="reset"  class="btn">
+                    <input type="reset" class="btn">
                 </div>
             </form>
         </div>
@@ -84,6 +84,46 @@
                 <button id="next-btn" class="btn">下一页</button>
             </div>
         </div>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <h2>编辑表单</h2>
+            <form action="" id="student-add-form-edit">
+                <div>
+                    <label for="name-edit">姓名</label>
+                    <input type="text" id="name-edit" name="name">
+                </div>
+                <div>
+                    <label for="">性别</label>
+
+                    <input type="radio" id="male-edit" name="sex" checked value="0">
+                    <label for="male-edit" class="sex">男</label>
+                    <input type="radio" id="female-edit" name="sex" value="1">
+                    <label for="female-edit" class="sex">女</label>
+                </div>
+                <div>
+                    <label for="number-edit">学号</label>
+                    <input type="text" id="number-edit" name="sNo" readonly></div>
+                <div>
+                    <label for="email-edit">邮箱</label>
+                    <input type="text" id="email-edit" name="email"></div>
+                <div>
+                    <label for="birth-edit">出生年</label>
+                    <input type="text" id="birth-edit" name="birth"></div>
+                <div>
+                    <label for="phone-edit">手机号</label>
+                    <input type="text" id="phone-edit" name="phone"></div>
+                <div>
+                    <label for="address-edit">住址</label>
+                    <input type="text" id="address-edit" name="address">
+                </div>
+                <div>
+                    <label for=""></label>
+                    <input type="submit" class="btn" id="student-add-submit-edit">
+                </div>
+            </form>
+        </div>
+
     </div>
     <script src="./index.js"></script>
 </body>
