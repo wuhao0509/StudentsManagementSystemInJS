@@ -197,6 +197,7 @@ body {
     width: 160px;
 }
 
-#prev-btn{
+/* 只有当第一页数据超过pageSize时,才能显示翻页按钮,所以翻页按钮一开始不显示 */
+.turn-page .btn{
     display: none;
 }

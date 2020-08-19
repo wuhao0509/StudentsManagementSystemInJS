@@ -1,9 +1,11 @@
-var page = 1,
-    size = 5,
-    cont = 0;//学生总人数
+var nowPage = 1,
+    pageSize = 5,
+    allPage = 1;
+
 var studentsList = [];
 
 function bindEvent() {
+    //选项卡切换事件
     var menuList = document.getElementsByClassName('menu')[0];
     menuList.onclick = function (e) {
         // console.log(e.target.nodeName)
@@ -28,11 +30,11 @@ function bindEvent() {
         }
     }
 
+    //提交添加学生表单事件
     var submit = document.getElementById('student-add-submit');
     submit.onclick = function (e) {
         var form = document.getElementById('student-add-form');
         var data = getFormData(form);
-        console.log(data);
         if (data) {
             transferData('/api/student/addStudent', data, function (result) {
                 window.alert(result.msg);
@@ -45,6 +47,7 @@ function bindEvent() {
         e.preventDefault();
     }
 
+    //编辑表单数据回填及删除学生事件
     var tbody = document.getElementById('tbody');
     var modal = document.getElementsByClassName('modal')[0];
     tbody.onclick = function (e) {
@@ -56,15 +59,18 @@ function bindEvent() {
             var isDel = confirm('确定删除吗')
             if (isDel) {
                 var studentSno = studentsList[e.target.dataset.index].sNo;
-                console.log(studentSno)
                 transferData('/api/student/delBySno', {
                     sNo: studentSno
                 }, function (result) {
                     window.alert(result.msg);
+                    studentsList.length--;
+                    if(studentsList.length == 0){
+                        var prevPage = document.getElementById('prev-btn');
+                        prevPage.click();
+                    }
                     getTableData();
                 })
             }
-
         }
     }
     modal.onclick = function (e) {
@@ -74,12 +80,12 @@ function bindEvent() {
 
     }
 
+    //编辑学生信息事件
     var editBtn = document.getElementById('student-add-submit-edit');
     var editForm = document.getElementById('student-add-form-edit');
     editBtn.onclick = function (e) {
         var data = getFormData(editForm);
-        console.log(data);
-        transferData('/api/student/updateStudent', data,function(result){
+        transferData('/api/student/updateStudent', data, function (result) {
             window.alert(result.msg);
             modal.style.display = 'none';
         })
@@ -87,26 +93,16 @@ function bindEvent() {
         e.preventDefault();
     }
 
-    var preBtn = document.getElementById('prev-btn');
-    var nextBtn = document.getElementById('next-btn');
-    nextBtn.onclick = function(){
-        page+=1;
-        getTableData();
-        console.log(cont);
-        if(cont-page*size<0){
-            this.style.display='none';
-            
+    //翻页事件
+    var turnPage = document.getElementsByClassName('turn-page')[0];
+    turnPage.onclick = function (e) {
+        if (e.target.id == 'next-btn') {
+            nowPage++;
+            getTableData();
+        } else if (e.target.id == 'prev-btn') {
+            nowPage--;
+            getTableData();
         }
-        preBtn.style.display='inline-block';
-    }
-    preBtn.onclick = function(){
-        page-=1;
-        if(page == 1){
-            this.style.display='none';
-            
-        }
-        nextBtn.style.display='inline-block';
-        getTableData();
     }
 
     //获取兄弟结点
@@ -144,7 +140,7 @@ function bindEvent() {
 
     // 利用savaData函数向后台传数据
     function transferData(url, data, success) {
-        data.appkey = 'qiqiqi_1569759019786';
+        data.appkey = 'wuhao_1585575377773';
         var result = saveData('http://open.duyiedu.com' + url, data);
         if (result.status == 'success') {
             success(result);
@@ -156,11 +152,11 @@ function bindEvent() {
     //从后台获取学生信息
     function getTableData() {
         transferData('/api/student/findByPage', {
-            page: page,
-            size: size
+            page: nowPage,
+            size: pageSize
         }, function (result) {
-            console.log(result);
-            cont = result.data.cont;
+            console.log(result)
+            allPage = Math.ceil(result.data.cont / pageSize);
             renderTable(result);
         })
     }
@@ -170,6 +166,7 @@ function bindEvent() {
         var str = '';
         var renderList = result.data.findByPage;
         var thisYear = new Date().getFullYear();
+        studentsList.splice(0, studentsList.length);
         renderList.forEach(function (elem, index) {
             str += `
             <tr>
@@ -189,16 +186,27 @@ function bindEvent() {
 
             studentsList.push(elem);
         })
-
-
         var tbody = document.getElementById('tbody');
         tbody.innerHTML = str;
+
+        var nextPage = document.getElementById('next-btn');
+        var prevPage = document.getElementById('prev-btn');
+        if (allPage > nowPage) {
+            nextPage.style.display = 'inline-block';
+        } else {
+            nextPage.style.display = 'none';
+        }
+
+        if (nowPage > 1) {
+            prevPage.style.display = 'inline-block';
+        } else {
+            prevPage.style.display = 'none';
+        }
     }
 
     //数据回填
     function backData(data) {
         var editForm = document.getElementById('student-add-form-edit');
-        console.log(data)
         // form.name.value = data.name;
         for (var prop in data) {
             if (editForm[prop]) {
@@ -206,7 +214,6 @@ function bindEvent() {
             }
         }
     }
-
     getTableData();
 }
 
